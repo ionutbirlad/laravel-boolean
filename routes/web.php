@@ -20,3 +20,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// In questo modo assegno tutte le caratteristiche che mi servono per determinate rotte e faccio passare attraverso il MIDDLEWARE
+Route::namespace('Admin')
+->name('admin.')
+->prefix('admin')
+->middleware('auth')
+->group(function () {
+  Route::resource('articles', 'ArticlesController');
+});
+// In questo modo assegno tutte le caratteristiche che mi servono per determinate rotte e faccio passare attraverso il MIDDLEWARE
