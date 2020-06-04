@@ -33,7 +33,10 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        $tags = Tag::all();
+
+        return view('admin.articles.create', compact('categories', 'tags'));
     }
 
     /**
@@ -44,7 +47,21 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        if (!empty($data['visible'])) {
+          $data['visible'] = 1;
+        } else{
+          $data['visible'] = 0;
+        }
+        $article = new Article;
+        $user = Auth::id();
+        $article->user_id = $user;
+        // $article->category_id = $data['category'];
+        $article->fill($data);
+        $article->save($data);
+        // $article->category()->attach($data['category']);
+        $article->tags()->attach($data['tags']);
+
     }
 
     /**
