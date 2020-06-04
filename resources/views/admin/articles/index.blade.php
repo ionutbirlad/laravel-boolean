@@ -21,7 +21,7 @@
                 <td>{{$article->title}}</td>
                 <td>{{$article->summary}}</td>
                 <td>{{$article->category->name}}</td>
-                <td><a class="btn btn-primary" href="#">Visualizza</a></td>
+                <td><a class="btn btn-primary" href="{{route('admin.articles.show', $article->id)}}">Visualizza</a></td>
                 <td><a class="btn btn-info" href="#">Modifica</a></td>
                 <td><input class="btn btn-danger" type="submit" value="Elimina"></td>
               </tr>
